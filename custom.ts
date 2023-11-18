@@ -56,9 +56,17 @@ namespace pinpon {
             ball_dy = ball_dy * -1
         }
     }
+
+    //% block="ボールを上に跳ね返し、速度up"
+    export function up_reflect(): void {
+        led.plot(ball_x + ball_dx, ball_y + ball_dy)
+        led.unplot(ball_x, ball_y)
+        ball_x = ball_x + ball_dx
+        ball_y = ball_y + ball_dy
+        basic.pause(interval)
+    }
     //% block="バーに当たったらin_gameを真、地面についたらin_gameを偽に"
-    export function in_game_switch(): void {
-        let point = 0;
+    export function in_game_switch(): void {    
         if (ball_y + ball_dy > 3) {
             if (led.point(ball_x + ball_dx, ball_y + ball_dy)) {
                 ball_dy = ball_dy * -1
@@ -74,6 +82,8 @@ namespace pinpon {
         }
     }
 
+    
+
     //% block="最初にボールを点灯させる"
     export function ball_light(): void {
         led.plot(ball_x, ball_y)
@@ -81,14 +91,7 @@ namespace pinpon {
         led.plot(bar_x + 1, 4)
     }
 
-    //% block = "ボールを上に跳ね返して速度up"
-    export function up_reflect(): void {
-        led.plot(ball_x + ball_dx, ball_y + ball_dy)
-        led.unplot(ball_x, ball_y)
-        ball_x = ball_x + ball_dx
-        ball_y = ball_y + ball_dy
-        basic.pause(interval)
-    }
+    
 
 
 
